@@ -56,13 +56,13 @@
             <RowDefinition Height="40*" />
             <RowDefinition Height="40*" />
           </Grid.RowDefinitions>
-          <ctrl:PushRadioButton x:Name="radioButton1" Margin="5" Grid.Column="1" FontSize="16" Text="{x:Static t:Strings.ShowMyOpen}" />
-          <ctrl:PushRadioButton x:Name="radioButton2" Margin="5" Grid.Column="1" Grid.Row="1" FontSize="16" Text="{x:Static t:Strings.ShowAllOpen}" />
-          <ctrl:PushRadioButton x:Name="radioButton3" Margin="5" Grid.Column="1" Grid.Row="2" FontSize="16" Text="{x:Static t:Strings.ShowFutureOrders}" />
-          <ctrl:PushRadioButton x:Name="radioButton4" Margin="5" Grid.Column="1" Grid.Row="3" FontSize="16" Text="{x:Static t:Strings.ShowClosed}" />
-          <ctrl:PushRadioButton x:Name="radioButton5" Margin="5" Grid.Column="1" Grid.Row="4" FontSize="16" Text="{x:Static t:Strings.ShowAllDay}" />
-          <ctrl:PushRadioButton x:Name="radioButton6" Margin="5" Grid.Column="1" Grid.Row="5" FontSize="16" Text="{x:Static t:Strings.ShowRange}" />
-          <ctrl:PushRadioButton x:Name="radioButton7" Margin="5" Grid.Column="1" Grid.Row="6" FontSize="16" Text="{x:Static t:Strings.ShowAll}" />
+          <ctrl:PushRadioButton x:Name="radioButton1" Margin="5" Grid.Column="1" FontSize="16" Text="{x:Static t:Strings.ShowMyOpen}" SelectionGained="radioButton1_SelectionGained" />
+          <ctrl:PushRadioButton x:Name="radioButton2" Margin="5" Grid.Column="1" Grid.Row="1" FontSize="16" Text="{x:Static t:Strings.ShowAllOpen}" SelectionGained="radioButton2_SelectionGained" />
+          <ctrl:PushRadioButton x:Name="radioButton3" Margin="5" Grid.Column="1" Grid.Row="2" FontSize="16" Text="{x:Static t:Strings.ShowFutureOrders}" SelectionGained="radioButton3_SelectionGained" />
+          <ctrl:PushRadioButton x:Name="radioButton4" Margin="5" Grid.Column="1" Grid.Row="3" FontSize="16" Text="{x:Static t:Strings.ShowClosed}" SelectionGained="radioButton4_SelectionGained" />
+          <ctrl:PushRadioButton x:Name="radioButton5" Margin="5" Grid.Column="1" Grid.Row="4" FontSize="16" Text="{x:Static t:Strings.ShowAllDay}" SelectionGained="radioButton5_SelectionGained" />
+          <ctrl:PushRadioButton x:Name="radioButton6" Margin="5" Grid.Column="1" Grid.Row="5" FontSize="16" Text="{x:Static t:Strings.ShowRange}" SelectionGained="radioButton6_SelectionGained" />
+          <ctrl:PushRadioButton x:Name="radioButton7" Margin="5" Grid.Column="1" Grid.Row="6" FontSize="16" Text="{x:Static t:Strings.ShowAll}" SelectionGained="radioButton7_SelectionGained" />
         </Grid>
       </GroupBox>
     </Grid>

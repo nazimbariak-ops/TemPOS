@@ -111,7 +111,7 @@ namespace TemPOS
             InitializeComponent();
             Loaded += OrderEntryTicketSelectionControl_Loaded;
         }
-        
+
         [Obfuscation(Exclude = true)]
         void OrderEntryTicketSelectionControl_Loaded(object sender, RoutedEventArgs e)
         {
@@ -128,6 +128,25 @@ namespace TemPOS
                 TicketFilterControl_CurrentFilterChanged;
             TicketTypeFilterControl.CurrentFilterChanged +=
                 TicketTypeFilterControl_CurrentFilterChanged;
+
+            LoadDefaultTicketFilter();
+        }
+
+        private void LoadDefaultTicketFilter()
+        {
+            if (SessionManager.ActiveEmployee != null)
+            {
+                EmployeeSetting setting = EmployeeSetting.Get(SessionManager.ActiveEmployee.Id, "DefaultTicketFilter");
+                if (setting != null && setting.IntValue.HasValue)
+                {
+                    TicketFilterControl.CurrentFilter = (TicketSelectionShow)setting.IntValue.Value;
+                }
+                else
+                {
+                    // Default if not set
+                    TicketFilterControl.CurrentFilter = TicketSelectionShow.MyOpen;
+                }
+            }
         }
 
         private ContextMenu GetFilterContextMenu()
@@ -368,7 +387,7 @@ namespace TemPOS
                 }
                 else
                 {
-                    text = (ticket.OrderId != null ?                        
+                    text = (ticket.OrderId != null ?
                         Types.Strings.Order + ": " + ticket.OrderId.Value +
                         ", " : "") + Types.Strings.Ticket + ": " + ticket.PrimaryKey.Id + (ticket.PartyId != 0 ?
                         Types.Strings.Party + ticket.PartyId : "") + ", " + ticket.Type.GetFriendlyName() +

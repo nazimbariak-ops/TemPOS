@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows;
 using PosControls;
 using PosModels;
@@ -24,6 +24,7 @@ namespace TemPOS
             StringsCore.LanguageChanged += StringsCore_LanguageChanged;
             SetCurrentLanguage();
             SetCurrentTemperature();
+            SetDefaultTicketFilter();
         }
 
         void StringsCore_LanguageChanged(object sender, EventArgs e)
@@ -41,6 +42,15 @@ namespace TemPOS
             radioButtonLangFahrenheit.Text = Types.Strings.SettingsFahrenheit;
             radioButtonLangCelsius.Text = Types.Strings.SettingsCelsius;
             radioButtonLangKelvin.Text = Types.Strings.SettingsKelvin;
+
+            groupBoxTicketFilter.Header = Types.Strings.DefaultTicketFilter;
+            radioButton1.Text = Types.Strings.ShowMyOpen;
+            radioButton2.Text = Types.Strings.ShowAllOpen;
+            radioButton3.Text = Types.Strings.ShowFutureOrders;
+            radioButton4.Text = Types.Strings.ShowClosed;
+            radioButton5.Text = Types.Strings.ShowAllDay;
+            radioButton6.Text = Types.Strings.ShowRange;
+            radioButton7.Text = Types.Strings.ShowAll;
         }
 
         private void SetCurrentTemperature()
@@ -64,6 +74,27 @@ namespace TemPOS
 #endif
         }
 
+        private void SetDefaultTicketFilter()
+        {
+            if (SessionManager.ActiveEmployee == null) return;
+            EmployeeSetting setting = EmployeeSetting.Get(SessionManager.ActiveEmployee.Id, "DefaultTicketFilter");
+            if (setting != null && setting.IntValue.HasValue)
+            {
+                TicketSelectionShow filter = (TicketSelectionShow)setting.IntValue.Value;
+                radioButton1.IsSelected = (filter == TicketSelectionShow.MyOpen);
+                radioButton2.IsSelected = (filter == TicketSelectionShow.AllOpen);
+                radioButton3.IsSelected = (filter == TicketSelectionShow.Future);
+                radioButton4.IsSelected = (filter == TicketSelectionShow.Closed);
+                radioButton5.IsSelected = (filter == TicketSelectionShow.AllDay);
+                radioButton6.IsSelected = (filter == TicketSelectionShow.Range);
+                radioButton7.IsSelected = (filter == TicketSelectionShow.All);
+            }
+            else
+            {
+                radioButton1.IsSelected = true;
+            }
+        }
+
         private void UpdateEmployeeLanguageSetting()
         {
             if (SessionManager.ActiveEmployee != null)
@@ -74,6 +105,12 @@ namespace TemPOS
         {
             if (SessionManager.ActiveEmployee != null)
                 EmployeeSetting.Set(SessionManager.ActiveEmployee.Id, "TemperatureScale", (int)WeatherHelper.Scale);
+        }
+
+        private void UpdateEmployeeDefaultTicketFilter(TicketSelectionShow filter)
+        {
+            if (SessionManager.ActiveEmployee != null)
+                EmployeeSetting.Set(SessionManager.ActiveEmployee.Id, "DefaultTicketFilter", (int)filter);
         }
 
         private void radioButtonLangEnglish_SelectionGained(object sender, EventArgs e)
@@ -153,6 +190,41 @@ namespace TemPOS
             WeatherHelper.Scale = TemperatureScale.Kelvin;
             SetCurrentTemperature();
             UpdateEmployeeTemperatureSetting();
+        }
+
+        private void radioButton1_SelectionGained(object sender, EventArgs e)
+        {
+            UpdateEmployeeDefaultTicketFilter(TicketSelectionShow.MyOpen);
+        }
+
+        private void radioButton2_SelectionGained(object sender, EventArgs e)
+        {
+            UpdateEmployeeDefaultTicketFilter(TicketSelectionShow.AllOpen);
+        }
+
+        private void radioButton3_SelectionGained(object sender, EventArgs e)
+        {
+            UpdateEmployeeDefaultTicketFilter(TicketSelectionShow.Future);
+        }
+
+        private void radioButton4_SelectionGained(object sender, EventArgs e)
+        {
+            UpdateEmployeeDefaultTicketFilter(TicketSelectionShow.Closed);
+        }
+
+        private void radioButton5_SelectionGained(object sender, EventArgs e)
+        {
+            UpdateEmployeeDefaultTicketFilter(TicketSelectionShow.AllDay);
+        }
+
+        private void radioButton6_SelectionGained(object sender, EventArgs e)
+        {
+            UpdateEmployeeDefaultTicketFilter(TicketSelectionShow.Range);
+        }
+
+        private void radioButton7_SelectionGained(object sender, EventArgs e)
+        {
+            UpdateEmployeeDefaultTicketFilter(TicketSelectionShow.All);
         }
 
         public static PosDialogWindow CreateInDefaultWindow()
