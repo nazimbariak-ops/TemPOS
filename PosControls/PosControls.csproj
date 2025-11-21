@@ -36,7 +36,6 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>TemPOS.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release - Client|AnyCPU'">
     <OutputPath>bin\Release - Client\</OutputPath>
@@ -320,7 +319,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="TemPOS.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="ActionNotificationControl.xaml">

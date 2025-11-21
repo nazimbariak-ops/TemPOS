@@ -38,7 +38,6 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>TemPOS.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release - Client|x86'">
     <OutputPath>bin\x86\Release - Client\</OutputPath>
@@ -251,7 +250,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="TemPOS.pfx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PosControls\PosControls.csproj">

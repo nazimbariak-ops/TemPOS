@@ -8,7 +8,6 @@
     <AssemblyKeyContainerName>
     </AssemblyKeyContainerName>
     <AssemblyName>ThoughtWorks.QRCode</AssemblyName>
-    <AssemblyOriginatorKeyFile>TemPOS.pfx</AssemblyOriginatorKeyFile>
     <DefaultClientScript>JScript</DefaultClientScript>
     <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
     <DefaultTargetSchema>IE50</DefaultTargetSchema>
@@ -477,7 +476,6 @@
     <None Include="Resources\rsc66.dat" />
     <None Include="Resources\rsc68.dat" />
     <None Include="Resources\rsc7.dat" />
-    <None Include="TemPOS.pfx" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
